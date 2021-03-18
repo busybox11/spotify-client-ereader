@@ -1,0 +1,19 @@
+{
+  "name": "spotify-client-ereader",
+  "version": "1.0.0",
+  "description": "A Spotify client made for eReaders web browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/busybox11/spotify-client-ereader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/busybox11/spotify-client-ereader/issues"
+  },
+  "homepage": "https://github.com/busybox11/spotify-client-ereader#readme"
+}
