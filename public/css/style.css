@@ -1,3 +1,30 @@
+html, body {
+	height: 100%;
+}
+
 body {
 	margin: 0;
+
+	font-size: 1.3rem;
+	font-family: sans-serif;
+
+	display: flex;
+	flex-direction: column;
+}
+
+nav,
+#playing {
+	background: black;
+	color: white;
+
+	padding: .75rem 1rem;
+}
+
+#app {
+	height: 100%;
+	padding: .75rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-block-start: 0;
 }
