@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/busybox11/spotify-client-ereader/issues"
   },
-  "homepage": "https://github.com/busybox11/spotify-client-ereader#readme"
+  "homepage": "https://github.com/busybox11/spotify-client-ereader#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
