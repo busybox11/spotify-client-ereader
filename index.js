@@ -3,6 +3,8 @@ let app = express()
 const port = 3000
 let path = require('path');
 
+app.use('/', express.static(__dirname + '/public'));
+
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname + '/views/index.html'));
 })
