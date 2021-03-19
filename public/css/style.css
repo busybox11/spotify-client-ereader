@@ -24,6 +24,15 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: auto;
 }
 
+.home-section {
+	margin-bottom: 1.5rem;
+}
+
+.home-section-title {
+	margin-block-end: .5rem;
+	margin-bottom: .5rem;
+}
+
 .home-recent-row {
 	display: -webkit-inline-box;
 	margin-bottom: .75rem;
@@ -56,6 +65,10 @@ nav,
 
 	padding: .75rem 1rem;
 	box-sizing: border-box;
+}
+
+#navbar-links {
+	float: right;
 }
 
 #playing {
@@ -96,6 +109,7 @@ nav,
     right: 1rem;
 }
 
-#playing-controls-playback > .mdi {
+#playing-controls-playback > .mdi,
+#navbar-links > .mdi {
 	margin-left: 1rem;
 }
