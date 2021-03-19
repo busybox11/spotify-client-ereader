@@ -18,10 +18,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #app {
-	height: auto;
+	height: 73%;
 	padding: .75rem;
 
 	margin-bottom: auto;
+}
+
+.home-recent-row {
+	display: -webkit-inline-box;
+	margin-bottom: .75rem;
+}
+
+.home-recent-card {
+	width: calc(100% / 3);
+	line-height: 1;
+}
+
+.recent-img {
+	width: inherit;
+	margin-right: .5rem;
+	float: left;
+}
+
+.artist-img {
+	border-radius: 100%;
+}
+
+.recent-artist-name {
+	color: #3A3A3A;
+	font-size: 1rem;
 }
 
 nav,
