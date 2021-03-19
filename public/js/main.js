@@ -1,26 +1,13 @@
-function fetchPage(page, parameters="") {
-    var request = new XMLHttpRequest();	
+var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+var address = protocol + window.location.host + window.location.pathname + 'api/render';
+var renderws = new WebSocket(address);
 
-	request.open('GET', `/pages/${page}.html?${parameters}`);
-
-	request.onload = function() {
-		document.getElementById('app').innerHTML = request.response;
+(function() {
+	renderws.onmessage = function(msg) {
+		document.getElementById("app").innerHTML = msg.data
 	};
+})();
 
-	request.send();
-}
-
-function goTo(page, title, url) {
-	if ("undefined" !== typeof history.pushState) {
-		history.pushState({page: page}, title, url);
-	} else {
-		window.location.assign(url);
-	}
-	if (url == "/") {
-		fetchPage('home')
-	}
-}
-
-if (window.location.pathname == "/") {
-	goTo("test", "Spotify eReader", '/');
+renderws.onopen = function() {
+	renderws.send('home');
 }

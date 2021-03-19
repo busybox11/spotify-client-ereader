@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/busybox11/spotify-client-ereader#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0"
   }
 }
