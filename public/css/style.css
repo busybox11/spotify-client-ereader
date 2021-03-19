@@ -2,6 +2,7 @@
 
 html, body {
 	height: 100%;
+	overflow: hidden;
 }
 
 body {
@@ -9,9 +10,18 @@ body {
 
 	font-size: 1.3rem;
 	font-family: sans-serif;
+}
 
-	display: flex;
-	flex-direction: column;
+h1, h2, h3, h4, h5, h6 {
+	margin-block-start: 0;
+	margin-top: 0;
+}
+
+#app {
+	height: auto;
+	padding: .75rem;
+
+	margin-bottom: auto;
 }
 
 nav,
@@ -20,26 +30,17 @@ nav,
 	color: white;
 
 	padding: .75rem 1rem;
+	box-sizing: border-box;
 }
 
 #playing {
-	display: flex;
-	align-items: center;
-}
+	display: block;
+	width: -webkit-fill-available;
 
-#playing-info {
-	display: flex;
-	flex-direction: column;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 	width: 100%;
-}
-
-#app {
-	height: 100%;
-	padding: .75rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	margin-block-start: 0;
 }
 
 #playing-title,
@@ -54,10 +55,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #playing-controls {
-	display: flex;
+	display: -webkit-inline-box;
 }
 
-#playing-controls > * {
-	margin-left: .75rem;
+#playing-controls > * > .mdi {
 	font-size: 2rem;
+}
+
+#playing-device-name {
+	margin-left: .5rem;
+}
+
+#playing-controls-playback {
+	position: absolute;
+    right: 1rem;
+}
+
+#playing-controls-playback > .mdi {
+	margin-left: 1rem;
 }
