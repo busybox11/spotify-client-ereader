@@ -16,7 +16,6 @@ app.get('/', (req, res) => {
 
 app.ws('/api/render', function(ws, req) {
 	ws.on('message', function(msg) {
-		console.log(msg)
 		ws.send(fs.readFileSync(__dirname + `/views/pages/${msg}.html`, 'utf8'));
 	});
 });
