@@ -12,6 +12,10 @@ function getActivePage() {
 	return activeAppView.substr(activeAppView.indexOf('-') + 1)
 }
 
+function viewHome() {
+	renderws.send('home');
+}
+
 renderws.onmessage = function(msg) {
 	try { app.getElementById(getActivePage() + '-script').remove() } catch(e) { console.log('Script tag non-existent') }
 	
@@ -23,5 +27,5 @@ renderws.onmessage = function(msg) {
 };
 
 renderws.onopen = function() {
-	renderws.send('home');
+	viewHome();
 }
