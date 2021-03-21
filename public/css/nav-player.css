@@ -15,9 +15,9 @@ nav,
 	display: block;
 	width: -webkit-fill-available;
 
-	position: absolute;
+	/* position: absolute;
 	bottom: 0;
-	left: 0;
+	left: 0; */
 	width: 100%;
 }
 
