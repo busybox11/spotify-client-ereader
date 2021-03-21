@@ -110,27 +110,32 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 0;
 }
 
-.playlist-song {
+.playlist-song,
+.artist-song {
 	display: -webkit-inline-box;
 	width: 100%;
 	margin-bottom: .75rem;
 }
 
-.playlist-song-img {
+.playlist-song-img,
+.artist-song-img {
 	height: 3rem;
 	width: 3rem;
 	margin-right: .75rem;
 }
 
-.playlist-song-info {
+.playlist-song-info,
+.artist-song-info {
 	line-height: 1;
 }
 
-.playlist-song-name {
+.playlist-song-name,
+.artist-song-name {
 	font-weight: bold;
 	font-size: 1rem;
 }
 
-.playlist-song-artist {
+.playlist-song-artist,
+.artist-song-album {
 	font-size: .9rem;
 }
