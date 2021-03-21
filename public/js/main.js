@@ -7,6 +7,10 @@ function openPlaylist(id) {
 	renderws.send('playlist?uri=' + id);
 }
 
+function openArtist(id) {
+	renderws.send('artist?uri=' + id);
+}
+
 function getActivePage() {
 	var activeAppView = app.firstElementChild.id;
 	return activeAppView.substr(activeAppView.indexOf('-') + 1)
