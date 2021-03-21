@@ -6,6 +6,14 @@ let expressWs = require('express-ws')(app);
 
 const port = 3000
 
+function formatRenderUri(uri) {
+	if (uri.substr(0, uri.indexOf('?')) == "") {
+		return [uri];
+	} else {
+		return [uri.substr(0, uri.indexOf('?')), uri.substr(uri.indexOf('?') + 1)]
+	}
+}
+
 app.use('/', express.static(__dirname + '/public'));
 
 app.use('/pages', express.static(__dirname + '/views/pages'));
@@ -16,7 +24,13 @@ app.get('/', (req, res) => {
 
 app.ws('/api/render', function(ws, req) {
 	ws.on('message', function(msg) {
-		ws.send(fs.readFileSync(__dirname + `/views/pages/${msg}.html`, 'utf8'));
+		ws.send(fs.readFileSync(__dirname + `/views/pages/${formatRenderUri(msg)[0]}.html`, 'utf8'));
+	});
+});
+
+app.ws('/ping', function(ws, req) {
+	ws.on('message', function(msg) {
+		console.log('Pong');
 	});
 });
 
