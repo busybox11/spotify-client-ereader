@@ -59,32 +59,38 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 1rem;
 }
 
-.playlist-header {
+.playlist-header,
+.artist-header {
 	display: -webkit-inline-box;
 	width: -webkit-fill-available;
 	margin-bottom: .75rem;
 }
 
-.playlist-img-header {
+.playlist-img-header,
+.artist-img-header {
 	height: 10rem;
 	margin-right: .75rem;
 }
 
-.playlist-header-info {
+.playlist-header-info,
+.artist-header-info {
 	width: calc(100% - 10.75rem);
 	line-height: normal;
 }
 
-.playlist-header-name {
+.playlist-header-name,
+.artist-header-name {
 	margin-bottom: 0;
 }
 
-.playlist-header-desc {
+.playlist-header-desc,
+.artist-header-desc {
 	margin: 0;
 	font-size: 1rem;
 }
 
-.playlist-shuffle-btn {
+.playlist-shuffle-btn,
+.artist-shuffle-btn {
 	padding: .5rem .75rem;
 	background: #1DB954;
 	color: white;
@@ -94,7 +100,8 @@ h1, h2, h3, h4, h5, h6 {
     bottom: calc(150px - 2rem);
 }
 
-.playlist-shuffle-btn > .mdi {
+.playlist-shuffle-btn > .mdi,
+.artist-shuffle-btn > .mdi, {
 	margin-right: .5rem;
 }
 
