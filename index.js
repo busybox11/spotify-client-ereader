@@ -40,15 +40,27 @@ app.ws('/ping', function(ws, req) {
 });
 
 app.ws('/playback', function(ws, req) {
+	let trackId = ""
+	setInterval(function() {
+		spotify.getPlayingState().then(function(data) {
+			if (data.item.id != trackId) {
+				trackId = data.item.id
+				ws.send(JSON.stringify({type: 'playingState', player: data}))
+			}
+		})
+	}, 2000)
+
 	ws.on('message', function(msg) {
 		if (msg == "playingState") {
 			spotify.getPlayingState().then(function(data) {
+				trackId = data.item.id
 				ws.send(JSON.stringify({type: 'playingState', player: data}))
 			})
 		} else if (msg == "togglePlayback") {
 			spotify.togglePlayback().then(function(state) {
 				if (state) {
 					spotify.getPlayingState().then(function(data) {
+						trackId = data.item.id
 						ws.send(JSON.stringify({type: 'playingState', player: data}))
 					})
 				} else {
