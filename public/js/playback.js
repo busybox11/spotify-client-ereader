@@ -3,6 +3,10 @@ var playbackaddr = playbackprotocol + window.location.host + window.location.pat
 var playbackws = new WebSocket(playbackaddr);
 var app = document.getElementById("app");
 
+function togglePlayback() {
+    playbackws.send('togglePlayback');
+}
+
 playbackws.onmessage = function(msg) {
     data = JSON.parse(msg.data);
     
@@ -17,6 +21,10 @@ playbackws.onmessage = function(msg) {
         } else {
             document.getElementById("playing-playpause").classList = "mdi mdi-play"
         }
+
+        var navHeight = window.getComputedStyle(document.getElementsByTagName('nav')[0]).height
+        var playingHeight = window.getComputedStyle(document.getElementById('playing')).height
+        app.style.height = "calc(100% - " + navHeight + " - " + playingHeight + " - 1.5rem)"
     }
 };
 

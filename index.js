@@ -45,6 +45,16 @@ app.ws('/playback', function(ws, req) {
 			spotify.getPlayingState().then(function(data) {
 				ws.send(JSON.stringify({type: 'playingState', player: data}))
 			})
+		} else if (msg == "togglePlayback") {
+			spotify.togglePlayback().then(function(state) {
+				if (state) {
+					spotify.getPlayingState().then(function(data) {
+						ws.send(JSON.stringify({type: 'playingState', player: data}))
+					})
+				} else {
+					ws.send(JSON.stringify({type: 'togglePlayback', error: 'Failed to toggle playback (see server logs for further information)'}))
+				}
+			})
 		}
 	});
 });

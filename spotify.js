@@ -63,9 +63,40 @@ function getPlayingState() {
     });
 }
 
+function togglePlayback() {
+    return new Promise((resolve, reject) => {
+        spotifyApi.getMyCurrentPlaybackState()
+        .then(function(data) {
+            if (data.body.is_playing) {
+                spotifyApi.pause()
+                .then(function() {
+                    console.log('Playback paused');
+                    return resolve(true);
+                }, function(err) {
+                    console.error('Something went wrong!', err);
+                    return resolve(false);
+                });
+            } else {
+                spotifyApi.play()
+                .then(function() {
+                    console.log('Playback started');
+                    return resolve(true);
+                }, function(err) {
+                    console.error('Something went wrong!', err);
+                    return resolve(false);
+                });
+                }
+        }, function(err) {
+            console.error(err)
+            return resolve(false);
+        });
+    });
+}
+
 module.exports = {
     spotifyApi,
     callback,
     refreshToken,
-    getPlayingState
+    getPlayingState,
+    togglePlayback
 }
