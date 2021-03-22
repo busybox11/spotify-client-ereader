@@ -194,3 +194,19 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	margin-bottom: .25rem;
 }
+
+.searchbox {
+	background: #BBBBBB;
+	padding: .5rem .75rem;
+	border-radius: 9999px;
+	display: -webkit-inline-box;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.searchbox-input {
+	background: transparent;
+	border: none;
+	outline: none !important;
+	width: 100%;
+}
