@@ -1,52 +1,14 @@
 <div id="app-artist">
 	<div class="artist-header">
-		<img class="artist-img artist-img-header" src="https://i.scdn.co/image/bbd2fdba521b7c99b0450302f8b3171f8b1a49f1">
+		<img class="artist-img artist-img-header" src="{artist_img}">
 		<div class="artist-header-info">
-			<h1 class="artist-header-name">Your Neighbors</h1>
-			<span class="artist-header-desc">293,605 monthly listeners</span>
+			<h1 class="artist-header-name">{artist_name}</h1>
+			<span class="artist-header-desc">{artist_description}</span>
 		</div>
 	</div>
 
 	<div class="artist-content">
-		<div class="artist-song">
-			<img class="artist-song-img" src="https://i.scdn.co/image/ab67616d00001e020fad0b0d3a84c57541a4de10">
-			<div class="artist-song-info">
-				<span class="artist-song-name">Chicken</span><br>
-				<span class="artist-song-album">Chicken</span>
-			</div>
-		</div>
-
-		<div class="artist-song">
-			<img class="artist-song-img" src="https://i.scdn.co/image/ab67616d00001e02170445d48cc6d23a783bbe67">
-			<div class="artist-song-info">
-				<span class="artist-song-name">Temporary</span><br>
-				<span class="artist-song-album">Temporary</span>
-			</div>
-		</div>
-
-		<div class="artist-song">
-			<img class="artist-song-img" src="https://i.scdn.co/image/ab67616d00001e0250d628e63300eb535e86c2b1">
-			<div class="artist-song-info">
-				<span class="artist-song-name">F.O.M.O.</span><br>
-				<span class="artist-song-album">F.O.M.O.</span>
-			</div>
-		</div>
-
-		<div class="artist-song">
-			<img class="artist-song-img" src="https://i.scdn.co/image/ab67616d00001e02c4d1123bef2d4df480e526c3">
-			<div class="artist-song-info">
-				<span class="artist-song-name">Smacked</span><br>
-				<span class="artist-song-album">Smacked</span>
-			</div>
-		</div>
-
-		<div class="artist-song">
-			<img class="artist-song-img" src="https://i.scdn.co/image/ab67616d00001e029d33c0409adcca458731a746">
-			<div class="artist-song-info">
-				<span class="artist-song-name">Bodega</span><br>
-				<span class="artist-song-album">Bodega</span>
-			</div>
-		</div>
+		{songs_list}
 	</div>
 
 	<span class="artist-shuffle-btn"><i class="mdi mdi-shuffle"></i>Shuffle play</span>

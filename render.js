@@ -18,6 +18,14 @@ const albumSongItem = `<div class="album-song" onclick="playSong('{song_id}')">
 	</div>
 </div>`
 
+const artistSongItem = `<div class="artist-song" onclick="playSong('{song_id}')">
+	<img class="artist-song-img" src="{song_img}">
+	<div class="artist-song-info">
+		<span class="artist-song-name">{song_name}</span><br>
+		<span class="artist-song-album">{song_album}</span>
+	</div>
+</div>`
+
 function formatRenderUri(uri) {
 	if (uri.substr(0, uri.indexOf('?')) == "") {
 		return [uri];
@@ -64,7 +72,6 @@ function render(msg) {
 				songsList = '';
 
 				for (value of Object.entries(data.body.tracks.items)) {
-					console.log(value)
 					let tmp = albumSongItem.replace('{song_name}', value[1].name)
 										   .replace('{song_artist}', value[1].artists[0].name)
 										   .replace('{song_img}', data.body.images[2].url)
@@ -76,6 +83,35 @@ function render(msg) {
 				pageHtml = pageHtml.replace('{songs_list}', songsList)
 
 				return resolve(pageHtml);
+			}, function(err) {
+				return reject('Something went wrong!', err);
+			});
+		} else if (uri[0] == "artist") {
+			spotifyApi.getArtist(uri[1]['uri'])
+			.then(function(artist) {
+				pageHtml = pageHtml.replace('{artist_name}', artist.body.name)
+								   .replace('{artist_description}', `${artist.body.followers.total} followers`)
+								   .replace('{artist_img}', artist.body.images[0].url);
+
+				spotifyApi.getArtistTopTracks(uri[1]['uri'], 'FR')
+				.then(function(tracks) {
+					songsList = '';
+
+					for (i = 0; i < 5; i++) {
+						track = tracks.body.tracks[i]
+						let tmp = artistSongItem.replace('{song_name}', track.name)
+												.replace('{song_album}', track.album.name)
+												.replace('{song_img}', track.album.images[2].url)
+												.replace('{song_id}', track.id)
+
+						songsList += tmp
+					}
+
+					pageHtml = pageHtml.replace('{songs_list}', songsList)
+					return resolve(pageHtml);
+				}, function(err) {
+					return reject('Something went wrong!', err);
+				});
 			}, function(err) {
 				return reject('Something went wrong!', err);
 			});
