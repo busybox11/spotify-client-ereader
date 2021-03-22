@@ -11,6 +11,10 @@ function openArtist(id) {
 	renderws.send('artist?uri=' + id);
 }
 
+function openAlbum(id) {
+	renderws.send('album?uri=' + id);
+}
+
 function getActivePage() {
 	var activeAppView = app.firstElementChild.id;
 	return activeAppView.substr(activeAppView.indexOf('-') + 1)

@@ -60,6 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .playlist-header,
+.album-header,
 .artist-header {
 	display: -webkit-inline-box;
 	width: -webkit-fill-available;
@@ -67,29 +68,34 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .playlist-img-header,
+.album-img-header,
 .artist-img-header {
 	height: 10rem;
 	margin-right: .75rem;
 }
 
 .playlist-header-info,
+.album-header-info,
 .artist-header-info {
 	width: calc(100% - 10.75rem);
 	line-height: normal;
 }
 
 .playlist-header-name,
+.album-header-name,
 .artist-header-name {
 	margin-bottom: 0;
 }
 
 .playlist-header-desc,
+.album-header-desc,
 .artist-header-desc {
 	margin: 0;
 	font-size: 1rem;
 }
 
 .playlist-shuffle-btn,
+.album-shuffle-btn,
 .artist-shuffle-btn {
 	padding: .5rem .75rem;
 	background: #1DB954;
@@ -101,16 +107,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .playlist-shuffle-btn > .mdi,
+.album-shuffle-btn > .mdi,
 .artist-shuffle-btn > .mdi {
 	margin-right: .5rem;
 }
 
 .playlist-header,
-.playlist-content {
+.playlist-content,
+.album-header,
+.album-content {
 	line-height: 0;
 }
 
 .playlist-song,
+.album-song,
 .artist-song {
 	display: -webkit-inline-box;
 	width: 100%;
@@ -118,6 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .playlist-song-img,
+.album-song-img,
 .artist-song-img {
 	height: 3rem;
 	width: 3rem;
@@ -125,17 +136,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .playlist-song-info,
+.album-song-info,
 .artist-song-info {
 	line-height: 1;
 }
 
 .playlist-song-name,
+.album-song-name,
 .artist-song-name {
 	font-weight: bold;
 	font-size: 1rem;
 }
 
 .playlist-song-artist,
+.album-song-artist,
 .artist-song-album {
 	font-size: .9rem;
 }
