@@ -11,6 +11,7 @@ playbackws.onmessage = function(msg) {
         console.log(player)
         document.getElementById("playing-title").innerHTML = player.item.name
         document.getElementById("playing-artist").innerHTML = "- " + player.item.artists[0].name
+        document.getElementById("playing-device-name").innerHTML = player.device.name
         if (player.is_playing) {
             document.getElementById("playing-playpause").classList = "mdi mdi-pause"
         } else {
