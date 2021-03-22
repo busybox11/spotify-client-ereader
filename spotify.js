@@ -59,7 +59,6 @@ function getPlayingState() {
             return resolve(data.body);
         }, function(err) {
             return reject('Something went wrong!', err);
-            re
         });
     });
 }

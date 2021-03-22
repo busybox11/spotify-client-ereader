@@ -1,21 +1,13 @@
 require('dotenv').config()
 let express = require('express')
 let app = express()
-let fs = require('fs');
 let path = require('path');
 let expressWs = require('express-ws')(app);
 let spotify = require('./spotify');
 let loginScript = require('./login');
+let renderScript = require('./render');
 
 const port = 3000
-
-function formatRenderUri(uri) {
-	if (uri.substr(0, uri.indexOf('?')) == "") {
-		return [uri];
-	} else {
-		return [uri.substr(0, uri.indexOf('?')), uri.substr(uri.indexOf('?') + 1)]
-	}
-}
 
 app.use('/', express.static(__dirname + '/public'));
 
@@ -35,8 +27,10 @@ app.get('/callback', (req, res) => {
 
 app.ws('/api/render', function(ws, req) {
 	ws.on('message', function(msg) {
-		ws.send(fs.readFileSync(__dirname + `/views/pages/${formatRenderUri(msg)[0]}.html`, 'utf8'));
-	});
+		renderScript.render(msg).then(function(page) {
+			ws.send(page);
+		})
+	})
 });
 
 app.ws('/ping', function(ws, req) {

@@ -125,6 +125,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: -webkit-inline-box;
 	width: 100%;
 	margin-bottom: .75rem;
+	overflow: hidden;
 }
 
 .playlist-song-img,
@@ -146,6 +147,10 @@ h1, h2, h3, h4, h5, h6 {
 .artist-song-name {
 	font-weight: bold;
 	font-size: 1rem;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .playlist-song-artist,
@@ -196,7 +201,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .searchbox {
-	background: #BBBBBB;
+	background: #EEEEEE;
 	padding: .5rem .75rem;
 	border-radius: 9999px;
 	display: -webkit-inline-box;
