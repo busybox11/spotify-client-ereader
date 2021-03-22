@@ -1,8 +1,11 @@
+require('dotenv').config()
 let express = require('express')
 let app = express()
 let fs = require('fs');
 let path = require('path');
 let expressWs = require('express-ws')(app);
+let spotify = require('./spotify');
+let loginScript = require('./login');
 
 const port = 3000
 
@@ -22,6 +25,14 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname + '/views/index.html'));
 })
 
+app.get('/login', (req, res) => {
+	res.redirect(loginScript.getSpotifyLoginURL());
+})
+
+app.get('/callback', (req, res) => {
+	spotify.callback(req.query.code);
+})
+
 app.ws('/api/render', function(ws, req) {
 	ws.on('message', function(msg) {
 		ws.send(fs.readFileSync(__dirname + `/views/pages/${formatRenderUri(msg)[0]}.html`, 'utf8'));
@@ -31,6 +42,16 @@ app.ws('/api/render', function(ws, req) {
 app.ws('/ping', function(ws, req) {
 	ws.on('message', function(msg) {
 		console.log('Pong');
+	});
+});
+
+app.ws('/playback', function(ws, req) {
+	ws.on('message', function(msg) {
+		if (msg == "playingState") {
+			spotify.getPlayingState().then(function(data) {
+				ws.send(JSON.stringify({type: 'playingState', player: data}))
+			})
+		}
 	});
 });
 

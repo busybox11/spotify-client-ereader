@@ -1,6 +1,6 @@
-var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-var address = protocol + window.location.host + window.location.pathname + 'api/render';
-var renderws = new WebSocket(address);
+var renderprotocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+var renderaddress = renderprotocol + window.location.host + window.location.pathname + 'api/render';
+var renderws = new WebSocket(renderaddress);
 var app = document.getElementById("app");
 
 function openPlaylist(id) {
