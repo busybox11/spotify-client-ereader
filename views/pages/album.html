@@ -1,52 +1,14 @@
 <div id="app-album">
 	<div class="album-header">
-		<img class="album-img album-img-header" src="https://i.scdn.co/image/ab67616d00001e0220eefbf93f2df39a72414efe">
+		<img class="album-img album-img-header" src="{album_img}">
 		<div class="album-header-info">
-			<h2 class="album-header-name">Black</h2>
-			<p class="album-header-desc">8 Graves</p>
+			<h2 class="album-header-name">{album_name}</h2>
+			<p class="album-header-desc">{album_artist}</p>
 		</div>
 	</div>
 
 	<div class="album-content">
-		<div class="album-song">
-			<img class="album-song-img" src="https://i.scdn.co/image/ab67616d00001e0220eefbf93f2df39a72414efe">
-			<div class="album-song-info">
-				<span class="album-song-name">Bury Me Low</span><br>
-				<span class="album-song-artist">8 Graves</span>
-			</div>
-		</div>
-
-		<div class="album-song">
-			<img class="album-song-img" src="https://i.scdn.co/image/ab67616d00001e0220eefbf93f2df39a72414efe">
-			<div class="album-song-info">
-				<span class="album-song-name">Hang</span><br>
-				<span class="album-song-artist">8 Graves</span>
-			</div>
-		</div>
-
-		<div class="album-song">
-			<img class="album-song-img" src="https://i.scdn.co/image/ab67616d00001e0220eefbf93f2df39a72414efe">
-			<div class="album-song-info">
-				<span class="album-song-name">OK</span><br>
-				<span class="album-song-artist">8 Graves</span>
-			</div>
-		</div>
-
-		<div class="album-song">
-			<img class="album-song-img" src="https://i.scdn.co/image/ab67616d00001e0220eefbf93f2df39a72414efe">
-			<div class="album-song-info">
-				<span class="album-song-name">Numb</span><br>
-				<span class="album-song-artist">8 Graves</span>
-			</div>
-		</div>
-
-		<div class="album-song">
-			<img class="album-song-img" src="https://i.scdn.co/image/ab67616d00001e0220eefbf93f2df39a72414efe">
-			<div class="album-song-info">
-				<span class="album-song-name">Burning Alive</span><br>
-				<span class="album-song-artist">8 Graves</span>
-			</div>
-		</div>
+		{songs_list}
 	</div>
 
 	<span class="album-shuffle-btn"><i class="mdi mdi-shuffle"></i>Shuffle play</span>
