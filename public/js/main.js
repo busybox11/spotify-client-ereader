@@ -24,6 +24,10 @@ function viewHome() {
 	renderws.send('home');
 }
 
+function viewLibrary() {
+	renderws.send('library');
+}
+
 renderws.onmessage = function(msg) {
 	try { app.getElementById(getActivePage() + '-script').remove() } catch(e) { console.log('Script tag non-existent') }
 	

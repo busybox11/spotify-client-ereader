@@ -153,3 +153,44 @@ h1, h2, h3, h4, h5, h6 {
 .artist-song-album {
 	font-size: .9rem;
 }
+
+.library-tabs {
+	display: -webkit-inline-box;
+	margin-bottom: .75rem;
+}
+
+.library-tabs > * {
+	margin-right: 1.5rem;
+}
+
+.library-tab-selected {
+	border-bottom: solid 4px #1DB954;
+	font-weight: bold;
+}
+
+.library-content {
+	line-height: 0;
+}
+
+.library-item {
+	margin-bottom: .75rem;
+	line-height: 0;
+	width: 100%;
+	display: -webkit-inline-box;
+}
+
+.library-img {
+	height: 5rem;
+	width: 5rem;
+	margin-right: .75rem;
+}
+
+.library-item-info {
+	line-height: 1;
+}
+
+.library-item-name {
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin-bottom: .25rem;
+}
