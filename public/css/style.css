@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #app {
-	height: calc(100% - 148px - 1.5rem);
+	height: calc(100% - 147px - 1.5rem);
 	padding: .75rem;
 
 	margin-bottom: auto;
