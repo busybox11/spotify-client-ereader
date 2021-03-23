@@ -45,3 +45,13 @@ renderws.onmessage = function(msg) {
 renderws.onopen = function() {
 	viewHome();
 }
+
+renderws.onerror = function(event) {
+    app.innerHTML = "<code>renderws</code> WebSocket reported an error<br>Please refresh the page";
+    console.error(event)
+}
+
+renderws.onclose = function(event) {
+    app.innerHTML = "<code>renderws</code> WebSocket disconnected<br>Please refresh the page";
+    console.error(event)
+}

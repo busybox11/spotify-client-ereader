@@ -62,3 +62,13 @@ playbackws.onmessage = function(msg) {
 playbackws.onopen = function() {
 	playbackws.send('playingState');
 }
+
+playbackws.onerror = function(event) {
+    app.innerHTML = "<code>playbackws</code> WebSocket reported an error<br>Please refresh the page";
+    console.error(event)
+}
+
+playbackws.onclose = function(event) {
+    app.innerHTML = "<code>playbackws</code> WebSocket disconnected<br>Please refresh the page";
+    console.error(event)
+}
