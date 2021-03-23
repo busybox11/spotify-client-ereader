@@ -19,6 +19,10 @@ function playSong(id) {
     playbackws.send('play?uri=' + id);
 }
 
+function playUri(uri) {
+    playbackws.send('play?uri=' + uri);
+}
+
 playbackws.onmessage = function(msg) {
     data = JSON.parse(msg.data);
     

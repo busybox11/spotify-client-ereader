@@ -91,6 +91,14 @@ app.ws('/playback', function(ws, req) {
 			}, function(err) {
 				ws.send(JSON.stringify({type: 'togglePlayback', error: 'Failed to skip to previous song (see server logs for further information)'}))
 			});
+		} else if (uri[0] == "play") {
+			spotify.spotifyApi.play({"context_uri": uri[1]['uri']})
+			.then(function() {
+				console.log('Playback started');
+			}, function(err) {
+			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+				console.log('Something went wrong!', err);
+			});
 		}
 	});
 });
