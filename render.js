@@ -91,10 +91,11 @@ function render(msg) {
 		} else if (uri[0] == "artist") {
 			spotifyApi.getArtist(uri[1]['uri'])
 			.then(function(artist) {
+				console.log(artist)
 				pageHtml = pageHtml.replace('{artist_name}', artist.body.name)
 								   .replace('{artist_description}', `${artist.body.followers.total} followers`)
 								   .replace('{artist_img}', artist.body.images[0].url)
-								   .replace('{artist_uri}', artist.uri)
+								   .replace('{artist_uri}', artist.body.uri)
 
 				spotifyApi.getArtistTopTracks(uri[1]['uri'], 'FR')
 				.then(function(tracks) {
