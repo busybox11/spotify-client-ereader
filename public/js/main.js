@@ -3,6 +3,8 @@ var renderaddress = renderprotocol + window.location.host + window.location.path
 var renderws = new WebSocket(renderaddress);
 var app = document.getElementById("app");
 
+var refreshbtnhtml = "<div class='error-refresh-div'><span class='error-refresh-btn' onclick='document.location.reload()'><i class='mdi mdi-refresh'></i>Refresh</span></div>"
+
 function openPlaylist(id) {
 	renderws.send('playlist?uri=' + id);
 }
@@ -47,11 +49,11 @@ renderws.onopen = function() {
 }
 
 renderws.onerror = function(event) {
-    app.innerHTML = "<code>renderws</code> WebSocket reported an error<br>Please refresh the page";
+    app.innerHTML = "<code>renderws</code> WebSocket reported an error<br>Please refresh the page<br>" + refreshbtnhtml;
     console.error(event)
 }
 
 renderws.onclose = function(event) {
-    app.innerHTML = "<code>renderws</code> WebSocket disconnected<br>Please refresh the page";
+    app.innerHTML = "<code>renderws</code> WebSocket disconnected<br>Please refresh the page<br>" + refreshbtnhtml;
     console.error(event)
 }

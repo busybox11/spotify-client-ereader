@@ -64,11 +64,11 @@ playbackws.onopen = function() {
 }
 
 playbackws.onerror = function(event) {
-    app.innerHTML = "<code>playbackws</code> WebSocket reported an error<br>Please refresh the page";
+    app.innerHTML = "<code>playbackws</code> WebSocket reported an error<br>Please refresh the page" + refreshbtnhtml;
     console.error(event)
 }
 
 playbackws.onclose = function(event) {
-    app.innerHTML = "<code>playbackws</code> WebSocket disconnected<br>Please refresh the page";
+    app.innerHTML = "<code>playbackws</code> WebSocket disconnected<br>Please refresh the page" + refreshbtnhtml;
     console.error(event)
 }
