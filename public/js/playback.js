@@ -27,9 +27,25 @@ playbackws.onmessage = function(msg) {
     data = JSON.parse(msg.data);
     
     if (data.type == "playingState") {
+        if (Object.keys(data.player).length === 0) {
+            data.player = {
+                device: {
+                        name: "No device"
+                },
+                item: {
+                    artists: [
+                        {
+                            name: ""
+                        }
+                    ],
+                    name: "No music currently playing"
+                },
+                is_playing: false
+            }
+        }
         player = data.player
         document.getElementById("playing-title").innerHTML = player.item.name
-        document.getElementById("playing-artist").innerHTML = "- " + player.item.artists[0].name
+        document.getElementById("playing-artist").innerHTML = ((player.item.artists[0].name === "") ? "" : "- ") + player.item.artists[0].name // Do not show '-' when no music playing
         document.getElementById("playing-device-name").innerHTML = player.device.name
         if (player.is_playing) {
             document.getElementById("playing-playpause").classList = "mdi mdi-pause"

@@ -45,7 +45,7 @@ app.ws('/playback', function(ws, req) {
 
 	function playingState() {
 		spotify.getPlayingState().then(function(data) {
-			trackId = data.item.id
+			trackId = (Object.keys(data).length === 0) ? "" : data.item.id;
 			ws.send(JSON.stringify({type: 'playingState', player: data}))
 		})
 	}
@@ -60,7 +60,7 @@ app.ws('/playback', function(ws, req) {
 
 	setInterval(function() {
 		spotify.getPlayingState().then(function(data) {
-			if (data.item.id != trackId) {
+			if ((Object.keys(data).length === 0) ? "" : data.item.id != trackId) {
 				trackId = data.item.id
 				ws.send(JSON.stringify({type: 'playingState', player: data}))
 			}
@@ -94,7 +94,7 @@ app.ws('/playback', function(ws, req) {
 		} else if (uri[0] == "playUri") {
 			spotify.spotifyApi.play({"uris": [uri[1]['uri']]})
 			.then(function() {
-				console.log('Playback started');
+				playingState()
 			}, function(err) {
 			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
 				console.log('Something went wrong!', err);
@@ -102,7 +102,7 @@ app.ws('/playback', function(ws, req) {
 		} else if (uri[0] == "play") {
 			spotify.spotifyApi.play({"context_uri": uri[1]['uri']})
 			.then(function() {
-				console.log('Playback started');
+				playingState()
 			}, function(err) {
 			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
 				console.log('Something went wrong!', err);
