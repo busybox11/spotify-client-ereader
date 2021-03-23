@@ -7,6 +7,18 @@ function togglePlayback() {
     playbackws.send('togglePlayback');
 }
 
+function nextSong() {
+    playbackws.send('next');
+}
+
+function previousSong() {
+    playbackws.send('previous');
+}
+
+function playSong(id) {
+    playbackws.send('play?uri=' + id);
+}
+
 playbackws.onmessage = function(msg) {
     data = JSON.parse(msg.data);
     
