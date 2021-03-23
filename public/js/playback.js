@@ -15,8 +15,8 @@ function previousSong() {
     playbackws.send('previous');
 }
 
-function playSong(id) {
-    playbackws.send('play?uri=' + id);
+function playSong(uri) {
+    playbackws.send('playUri?uri=' + uri);
 }
 
 function playUri(uri) {
@@ -28,7 +28,6 @@ playbackws.onmessage = function(msg) {
     
     if (data.type == "playingState") {
         player = data.player
-        console.log(player)
         document.getElementById("playing-title").innerHTML = player.item.name
         document.getElementById("playing-artist").innerHTML = "- " + player.item.artists[0].name
         document.getElementById("playing-device-name").innerHTML = player.device.name

@@ -2,7 +2,7 @@ let { spotifyApi } = require('./spotify');
 let fs = require('fs');
 const querystring = require('querystring');
 
-const playlistSongItem = `<div class="playlist-song" onclick="playSong('{playlist_uri}')">
+const playlistSongItem = `<div class="playlist-song" onclick="playSong('{song_uri}')">
 	<img class="playlist-song-img" src="{song_img}">
 	<div class="playlist-song-info">
 		<span class="playlist-song-name">{song_name}</span><br>
@@ -10,7 +10,7 @@ const playlistSongItem = `<div class="playlist-song" onclick="playSong('{playlis
 	</div>
 </div>`
 
-const albumSongItem = `<div class="album-song" onclick="playSong('{album_uri}')">
+const albumSongItem = `<div class="album-song" onclick="playSong('{song_uri}')">
 	<img class="album-song-img" src="{song_img}">
 	<div class="album-song-info">
 		<span class="album-song-name">{song_name}</span><br>
@@ -18,7 +18,7 @@ const albumSongItem = `<div class="album-song" onclick="playSong('{album_uri}')"
 	</div>
 </div>`
 
-const artistSongItem = `<div class="artist-song" onclick="playSong('{artist_uri}')">
+const artistSongItem = `<div class="artist-song" onclick="playSong('{song_uri}')">
 	<img class="artist-song-img" src="{song_img}">
 	<div class="artist-song-info">
 		<span class="artist-song-name">{song_name}</span><br>
@@ -52,7 +52,7 @@ function render(msg) {
 					let tmp = playlistSongItem.replace('{song_name}', value[1].track.name)
 											  .replace('{song_artist}', value[1].track.artists[0].name)
 											  .replace('{song_img}', value[1].track.album.images[2].url)
-											  .replace('{playlist_uri}', value[1].track.artists[0].uri)
+											  .replace('{song_uri}', value[1].track.uri)
 
 					songsList += tmp
 				}
@@ -77,7 +77,7 @@ function render(msg) {
 					let tmp = albumSongItem.replace('{song_name}', value[1].name)
 										   .replace('{song_artist}', value[1].artists[0].name)
 										   .replace('{song_img}', data.body.images[2].url)
-										   .replace('{album_uri}', value[1].artists[0].uri)
+										   .replace('{song_uri}', value[1].uri)
 
 					songsList += tmp
 				}
@@ -105,7 +105,7 @@ function render(msg) {
 						let tmp = artistSongItem.replace('{song_name}', track.name)
 												.replace('{song_album}', track.album.name)
 												.replace('{song_img}', track.album.images[2].url)
-												.replace('{artist_uri}', track.artists[0].uri)
+												.replace('{song_uri}', track.uri)
 
 						songsList += tmp
 					}
