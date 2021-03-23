@@ -72,12 +72,10 @@ app.ws('/playback', function(ws, req) {
 		if (msg == "playingState") {
 			playingState()
 		} else if (uri[0] == "togglePlayback") {
-			spotify.togglePlayback().then(function(state) {
-				if (state) {
-					playingState()
-				} else {
-					ws.send(JSON.stringify({type: 'togglePlayback', error: 'Failed to toggle playback (see server logs for further information)'}))
-				}
+			spotify.togglePlayback().then(function() {
+				playingState()
+			}, function(err) {
+				ws.send(JSON.stringify({type: 'togglePlayback', error: 'Failed to toggle playback (see server logs for further information)'}))
 			})
 		} else if (uri[0] == "next") {
 			spotify.spotifyApi.skipToNext()

@@ -74,7 +74,7 @@ function togglePlayback() {
                     return resolve(true);
                 }, function(err) {
                     console.error('Something went wrong!', err);
-                    return resolve(false);
+                    return reject(err);
                 });
             } else {
                 spotifyApi.play()
@@ -83,12 +83,12 @@ function togglePlayback() {
                     return resolve(true);
                 }, function(err) {
                     console.error('Something went wrong!', err);
-                    return resolve(false);
+                    return reject(err);
                 });
                 }
         }, function(err) {
             console.error(err)
-            return resolve(false);
+            return reject(err);
         });
     });
 }
