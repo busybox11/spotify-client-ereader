@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 .playlist-shuffle-btn > .mdi,
 .album-shuffle-btn > .mdi,
 .artist-shuffle-btn > .mdi {
-	margin-right: .5rem;
+	margin-right: .25rem;
 }
 
 .playlist-header,
