@@ -45,8 +45,10 @@ app.ws('/playback', function(ws, req) {
 
 	function playingState() {
 		spotify.getPlayingState().then(function(data) {
-			trackId = (Object.keys(data).length === 0) ? "" : data.item.id;
-			ws.send(JSON.stringify({type: 'playingState', player: data}))
+			try {
+				trackId = (Object.keys(data).length === 0) ? "" : data.item.id;
+				ws.send(JSON.stringify({type: 'playingState', player: data}))
+			} catch(e) { console.error(`playingState() ERROR:\n${e}`)}
 		})
 	}
 
@@ -93,6 +95,21 @@ app.ws('/playback', function(ws, req) {
 			});
 		} else if (uri[0] == "playUri") {
 			spotify.spotifyApi.play({"uris": [uri[1]['uri']]})
+			.then(function() {
+				playingState()
+			}, function(err) {
+			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+				console.log('Something went wrong!', err);
+			});
+		} else if (uri[0] == "playUriWithContext") {
+			spotify.spotifyApi.play(
+			{
+			  "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+			  "offset": {
+			    "position": 5
+			  },
+			  "position_ms": 0
+			})
 			.then(function() {
 				playingState()
 			}, function(err) {
