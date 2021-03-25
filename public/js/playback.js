@@ -47,10 +47,13 @@ playbackws.onmessage = function(msg) {
         document.getElementById("playing-title").innerHTML = player.item.name
         document.getElementById("playing-artist").innerHTML = ((player.item.artists[0].name === "") ? "" : "- ") + player.item.artists[0].name // Do not show '-' when no music playing
         document.getElementById("playing-device-name").innerHTML = player.device.name
+        var pp = document.getElementById("playing-playpause").classList
         if (player.is_playing) {
-            document.getElementById("playing-playpause").classList = "mdi mdi-pause"
+            pp.add('mdi-pause')
+            pp.remove('mdi-play')
         } else {
-            document.getElementById("playing-playpause").classList = "mdi mdi-play"
+            pp.add('mdi-play')
+            pp.remove('mdi-pause')
         }
 
         var navHeight = window.getComputedStyle(document.getElementsByTagName('nav')[0]).height
