@@ -42,6 +42,7 @@ renderws.onmessage = function(msg) {
 	appViewScript.src = 'js/' + getActivePage() + '.js';
 	appViewScript.id = getActivePage() + '-script'
 	app.appendChild(appViewScript);
+	app.scrollTo(0, 0);
 };
 
 renderws.onopen = function() {
