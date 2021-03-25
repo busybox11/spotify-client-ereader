@@ -19,6 +19,10 @@ function playSong(uri) {
     playbackws.send('playUri?uri=' + uri);
 }
 
+function playSongWithContext(context_uri, offset) {
+    playbackws.send('playUriWithContext?context_uri=' + context_uri + '&offset=' + offset);
+}
+
 function playUri(uri) {
     playbackws.send('play?uri=' + uri);
 }

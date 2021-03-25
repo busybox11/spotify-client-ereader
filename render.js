@@ -18,7 +18,7 @@ const albumSongItem = `<div class="album-song" onclick="playSong('{song_uri}')">
 	</div>
 </div>`
 
-const artistSongItem = `<div class="artist-song" onclick="playSong('{song_uri}')">
+const artistSongItem = `<div class="artist-song" onclick="playSongWithContext('{context_uri}', '{song_offset}')">
 	<img class="artist-song-img" src="{song_img}">
 	<div class="artist-song-info">
 		<span class="artist-song-name">{song_name}</span><br>
@@ -105,7 +105,8 @@ function render(msg) {
 						let tmp = artistSongItem.replace('{song_name}', track.name)
 												.replace('{song_album}', track.album.name)
 												.replace('{song_img}', track.album.images[2].url)
-												.replace('{song_uri}', track.uri)
+												.replace('{song_offset}', 0)
+												.replace('{context_uri}', artist.body.uri)
 
 						songsList += tmp
 					}
