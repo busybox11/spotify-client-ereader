@@ -69,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: -webkit-inline-box;
 	width: -webkit-fill-available;
 	margin-bottom: .75rem;
+	position: relative;
 }
 
 .playlist-img-header,
@@ -76,6 +77,7 @@ h1, h2, h3, h4, h5, h6 {
 .artist-img-header {
 	height: 10rem;
 	margin-right: .75rem;
+	box-sizing: border-box;
 }
 
 .playlist-header-info,
@@ -83,7 +85,6 @@ h1, h2, h3, h4, h5, h6 {
 .artist-header-info {
 	width: calc(100% - 10.75rem);
 	line-height: normal;
-	position: relative;
 }
 
 .playlist-header-name,
@@ -100,10 +101,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .view-header-actions {
+	width: -webkit-fill-available;
 	position: absolute;
-	bottom: 0;
-
-	width: 100%;
+    left: 0;
+    bottom: 0;
+    margin-bottom: .75rem;
+    padding-left: 10.75rem;
 }
 
 .artist-follow-btn {
