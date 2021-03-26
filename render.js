@@ -126,7 +126,7 @@ function render(msg) {
 			let renderjsHome = require('./views/renderjs/home')
 
 			renderjsHome.renderRecentlyPlayed().then(function(data) {
-				pageHtml = pageHtml.replace('{recently_played_container}', data)
+				pageHtml = pageHtml.replace('{recently_played_content}', data)
 				return resolve(pageHtml);
 			})
 		} else {

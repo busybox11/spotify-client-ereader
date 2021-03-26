@@ -15,9 +15,9 @@ function renderRecentlyPlayed() {
         }).then(function(data) {
             contexts = []
             i = 0
+            let htmlTop = ""
+            let htmlBottom = ""
             data.body.items.forEach(async function(item) {
-                let htmlTop = ""
-                let htmlBottom = ""
                 if (!contexts.includes(item.context.uri) && contexts.length < 7) {
                     contexts.push(item.context.uri)
                     uri = item.context.uri.split(":")
@@ -25,26 +25,18 @@ function renderRecentlyPlayed() {
                     switch (uri[1]) {
                         case 'playlist':
                             let playlist = await spotifyApi.getPlaylist(uri[2])
-                            
-                            if (playlist.body.images.length < 3) {
-                                img = playlist.body.images[0].url
-                            } else {
-                                img = playlist.body.images[1].url
-                            }
 
                             addItem(
-                                uri[1],
                                 `openPlaylist('${playlist.body.id}')`,
-                                img,
+                                playlist.body.images[0].url,
                                 playlist.body.name
                             )
                             break;
                         case 'artist':
                             let artist = await spotifyApi.getArtist(uri[2])
                             addItem(
-                                uri[1],
                                 `openArtist('${artist.body.id}')`,
-                                artist.body.images[artist.body.images.length - 2].url,
+                                artist.body.images[0].url,
                                 artist.body.name
                             )
 
@@ -52,7 +44,6 @@ function renderRecentlyPlayed() {
                         case 'album':
                             let album = await spotifyApi.getAlbum(uri[2])
                             addItem(
-                                uri[1],
                                 `openAlbum('${album.body.id}')`,
                                 album.body.images[0].url,
                                 albumDesc.replace('{album-name}', album.body.name)
@@ -61,8 +52,8 @@ function renderRecentlyPlayed() {
                             break;
                     }
 
-                    function addItem(type, functionOnclick, img, desc) {
-                        let itemHtml = recentlyPlayedItem.replace('{item-type}', type)
+                    function addItem(functionOnclick, img, desc) {
+                        let itemHtml = recentlyPlayedItem.replace('{item-type}', item.context.type)
                                                          .replace('{item-function}', functionOnclick)
                                                          .replace('{item-img}', img)
                                                          .replace('{item-desc}', desc)

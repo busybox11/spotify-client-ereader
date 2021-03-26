@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: .5rem;
 }
 
+.home-grid-view {
+	line-height: 0;
+}
+
 .home-recent-row {
 	display: -webkit-inline-box;
 	margin-bottom: .75rem;
