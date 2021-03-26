@@ -45,10 +45,10 @@ app.ws('/playback', function(ws, req) {
 
 	function playingState() {
 		spotify.getPlayingState().then(function(data) {
-			try {
+			if (data.item !== null) {
 				trackId = (Object.keys(data).length === 0) ? "" : data.item.id;
 				ws.send(JSON.stringify({type: 'playingState', player: data}))
-			} catch(e) { console.error(`playingState() ERROR:\n${e}`)}
+			}
 		})
 	}
 
@@ -62,12 +62,14 @@ app.ws('/playback', function(ws, req) {
 
 	setInterval(function() {
 		spotify.getPlayingState().then(function(data) {
-			try {
+			if (data.item !== null) {
 				if ((Object.keys(data).length === 0) ? "" : data.item.id != trackId) {
 					trackId = data.item.id
 					ws.send(JSON.stringify({type: 'playingState', player: data}))
 				}
-			} catch(e) { playingState() }
+			} else {
+				playingState()
+			}
 		})
 	}, 2000)
 
