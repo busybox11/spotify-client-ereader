@@ -131,7 +131,9 @@ h1, h2, h3, h4, h5, h6 {
 .playlist-header,
 .playlist-content,
 .album-header,
-.album-content {
+.album-content,
+.artist-header,
+.artist-content {
 	line-height: 0;
 }
 
