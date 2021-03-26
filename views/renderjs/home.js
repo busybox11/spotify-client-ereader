@@ -1,6 +1,6 @@
 let { spotifyApi } = require('../../spotify')
 
-const recentlyPlayedItem = `<div class="home-recent-card" onclick="{item-function}">
+const recentlyPlayedItem = `<div class="home-recent-item" onclick="{item-function}">
     <img class="recent-img {item-type}-img" src="{item-img}">
     {item-desc}
 </div>`
