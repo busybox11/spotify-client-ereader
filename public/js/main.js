@@ -35,8 +35,8 @@ function viewSearch() {
 }
 
 renderws.onmessage = function(msg) {
-	try { app.getElementById(getActivePage() + '-script').remove() } catch(e) { console.log('Script tag non-existent') }
-	
+	try { app.getElementById(getActivePage() + '-script').remove() } catch(e) {}
+
 	app.innerHTML = msg.data;
 	var appViewScript = document.createElement("script");
 	appViewScript.src = 'js/' + getActivePage() + '.js';
