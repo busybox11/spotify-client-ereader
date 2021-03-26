@@ -35,6 +35,14 @@ function unfollowPlaylist(id, dom_id) {
 	playbackws.send('unfollowPlaylist?id=' + id + '&dom_id=' + dom_id);
 }
 
+function followArtist(id, dom_id) {
+	playbackws.send('followArtist?id=' + id + '&dom_id=' + dom_id);
+}
+
+function unfollowArtist(id, dom_id) {
+	playbackws.send('unfollowArtist?id=' + id + '&dom_id=' + dom_id);
+}
+
 playbackws.onmessage = function(msg) {
 	data = JSON.parse(msg.data);
 
@@ -79,6 +87,14 @@ playbackws.onmessage = function(msg) {
 		document.querySelector(data.dom_id).classList.remove('playlist-followed-btn');
 		document.querySelector(data.dom_id).innerHTML = "Follow";
 		document.querySelector(data.dom_id).setAttribute('onclick', "followPlaylist('" + data.id + "', '" + data.dom_id + "')")
+	} else if (data.type == "followedArtist") {
+		document.querySelector(data.dom_id).classList.add('artist-followed-btn');
+		document.querySelector(data.dom_id).innerHTML = "Following";
+		document.querySelector(data.dom_id).setAttribute('onclick', "unfollowArtist('" + data.id + "', '" + data.dom_id + "')")
+	} else if (data.type == "unfollowedArtist") {
+		document.querySelector(data.dom_id).classList.remove('artist-followed-btn');
+		document.querySelector(data.dom_id).innerHTML = "Follow";
+		document.querySelector(data.dom_id).setAttribute('onclick', "followArtist('" + data.id + "', '" + data.dom_id + "')")
 	}
 };
 

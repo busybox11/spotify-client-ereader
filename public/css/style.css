@@ -130,7 +130,8 @@ h1, h2, h3, h4, h5, h6 {
 	box-sizing: border-box;
 }
 
-.playlist-followed-btn {
+.playlist-followed-btn,
+.artist-followed-btn {
 	background: #1DB954;
 	border-color: #14813b;
 	color: white;

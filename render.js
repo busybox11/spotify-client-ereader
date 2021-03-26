@@ -130,7 +130,22 @@ function render(msg) {
 					}
 
 					pageHtml = pageHtml.replace('{songs_list}', songsList)
-					return resolve(pageHtml);
+
+					spotifyApi.isFollowingArtists([uri[1]['uri']])
+					.then(function(data) {
+						if (data.body[0]) {
+							pageHtml = pageHtml.replace('{artist-follow-btn-class}', ' artist-followed-btn')
+											   .replace('{artist-follow-btn-function}', `onclick="unfollowArtist('${uri[1]['uri']}', '.artist-follow-btn')"`)
+											   .replace('{artist-follow-btn-text}', 'Following')
+						} else {
+							pageHtml = pageHtml.replace('{artist-follow-btn-class}', '')
+											   .replace('{artist-follow-btn-function}', `onclick="followArtist('${uri[1]['uri']}', '.artist-follow-btn')"`)
+											   .replace('{artist-follow-btn-text}', 'Follow')
+						}
+						return resolve(pageHtml);
+					}, function(err) {
+						return reject('Something went wrong!', err);
+					});
 				}, function(err) {
 					return reject('Something went wrong!', err);
 				});

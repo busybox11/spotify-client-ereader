@@ -147,6 +147,20 @@ app.ws('/playback', function(ws, req) {
 			}, function(err) {
 				console.log('Something went wrong!', err);
 			});
+		} else if (uri[0] == "followArtist") {
+			spotify.spotifyApi.followArtists([uri[1]['id']])
+			.then(function(data) {
+				ws.send(JSON.stringify({type: 'followedArtist', id: uri[1]['id'], dom_id: uri[1]['dom_id']}))
+			}, function(err) {
+				console.log('Something went wrong!', err);
+			});
+		} else if (uri[0] == "unfollowArtist") {
+			spotify.spotifyApi.unfollowArtists([uri[1]['id']])
+			.then(function(data) {
+				ws.send(JSON.stringify({type: 'unfollowedArtist', id: uri[1]['id'], dom_id: uri[1]['dom_id']}))
+			}, function(err) {
+				console.log('Something went wrong!', err);
+			});
 		}
 	});
 });
