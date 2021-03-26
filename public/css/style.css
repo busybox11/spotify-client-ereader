@@ -123,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: -webkit-inline-box;
 	font-size: .8rem;
     padding: .5rem 1rem;
-    box-shadow: inset 0px 0px 0px 1px #999999;
+    box-shadow: inset 0px 0px 0px 2px #999999;
     color: #3e3e3e;
 	border-radius: .25rem;
 	margin-right: .5rem;
