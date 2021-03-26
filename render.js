@@ -42,7 +42,6 @@ function render(msg) {
 		if (uri[0] == "playlist") {
 			spotifyApi.getPlaylist(uri[1]['uri'])
 			.then(function(data) {
-				console.log(data.body)
 				pageHtml = pageHtml.replace('{playlist_name}', data.body.name)
 								   .replace('{playlist_description}', data.body.description)
 								   .replace('{playlist_img}', data.body.images[0].url)
