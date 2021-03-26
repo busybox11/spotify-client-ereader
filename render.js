@@ -122,6 +122,13 @@ function render(msg) {
 			}, function(err) {
 				return reject('Something went wrong!', err);
 			});
+		} else if (uri[0] == "home") {
+			let renderjsHome = require('./views/renderjs/home')
+
+			renderjsHome.renderRecentlyPlayed().then(function(data) {
+				pageHtml = pageHtml.replace('{recently_played_container}', data)
+				return resolve(pageHtml);
+			})
 		} else {
 			return resolve(pageHtml);
 		}
