@@ -98,7 +98,6 @@ app.ws('/playback', function(ws, req) {
 			.then(function() {
 				playingState()
 			}, function(err) {
-			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
 				console.log('Something went wrong!', err);
 			});
 		} else if (uri[0] == "playUriWithContext") {
@@ -106,7 +105,7 @@ app.ws('/playback', function(ws, req) {
 			{
 			  "context_uri": uri[1]['context_uri'],
 			  "offset": {
-			    "position": uri[1]['offset']
+			    "uri": uri[1]['uri']
 			  },
 			  "position_ms": 0
 			})
@@ -117,6 +116,13 @@ app.ws('/playback', function(ws, req) {
 				console.log('Something went wrong!', err);
 			});
 		} else if (uri[0] == "play") {
+			console.log(uri[1]['is_random'])
+			if (uri[1]['is_random'] == "true") {
+				spotify.spotifyApi.setShuffle(true)
+				.then(function() {}, function (err) {
+					console.log('Something went wrong!', err);
+				});
+			}
 			spotify.spotifyApi.play({"context_uri": uri[1]['uri']})
 			.then(function() {
 				playingState()

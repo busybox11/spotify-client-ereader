@@ -19,12 +19,12 @@ function playSong(uri) {
     playbackws.send('playUri?uri=' + uri);
 }
 
-function playSongWithContext(context_uri, offset) {
-    playbackws.send('playUriWithContext?context_uri=' + context_uri + '&offset=' + offset);
+function playSongWithContext(context_uri, uri) {
+    playbackws.send('playUriWithContext?context_uri=' + context_uri + '&uri=' + uri);
 }
 
-function playUri(uri) {
-    playbackws.send('play?uri=' + uri);
+function playUri(uri, isRandom=false) {
+    playbackws.send('play?uri=' + uri + '&is_random=' + isRandom);
 }
 
 playbackws.onmessage = function(msg) {
