@@ -76,6 +76,8 @@ h1, h2, h3, h4, h5, h6 {
 .album-img-header,
 .artist-img-header {
 	height: 10rem;
+	width: 10rem;
+	object-fit: cover;
 	margin-right: .75rem;
 	box-sizing: border-box;
 }
