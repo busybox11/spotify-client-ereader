@@ -18,7 +18,7 @@ function renderRecentlyPlayed() {
             let htmlTop = ""
             let htmlBottom = ""
             data.body.items.forEach(async function(item) {
-                if (contexts.length < 7 && !contexts.includes(item.context.uri)) {
+                if (contexts.length < 7 && item.context !== null && !contexts.includes(item.context.uri)) {
                     contexts.push(item.context.uri)
                     uri = item.context.uri.split(":")
 
@@ -58,16 +58,16 @@ function renderRecentlyPlayed() {
                                                          .replace('{item-img}', img)
                                                          .replace('{item-desc}', desc)
 
-                        if (i < 4) {
+                        if (i < 3) {
                             htmlTop += itemHtml
                         } else {
                             htmlBottom += itemHtml
                         }
+                        i++;
 
-                        if (contexts.length - 1 == i) {
+                        if (contexts.length == i) {
                             sendHtml(htmlTop, htmlBottom)
                         }
-                        i++;
                     }
                 }
             });
