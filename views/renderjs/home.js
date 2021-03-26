@@ -18,7 +18,7 @@ function renderRecentlyPlayed() {
             let htmlTop = ""
             let htmlBottom = ""
             data.body.items.forEach(async function(item) {
-                if (contexts.length < 7 && item.context !== null && !contexts.includes(item.context.uri)) {
+                if (contexts.length < 6 && item.context !== null && !contexts.includes(item.context.uri)) {
                     contexts.push(item.context.uri)
                     uri = item.context.uri.split(":")
 
