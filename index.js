@@ -62,10 +62,12 @@ app.ws('/playback', function(ws, req) {
 
 	setInterval(function() {
 		spotify.getPlayingState().then(function(data) {
-			if ((Object.keys(data).length === 0) ? "" : data.item.id != trackId) {
-				trackId = data.item.id
-				ws.send(JSON.stringify({type: 'playingState', player: data}))
-			}
+			try {
+				if ((Object.keys(data).length === 0) ? "" : data.item.id != trackId) {
+					trackId = data.item.id
+					ws.send(JSON.stringify({type: 'playingState', player: data}))
+				}
+			} catch(e) { playingState() }
 		})
 	}, 2000)
 
@@ -115,7 +117,6 @@ app.ws('/playback', function(ws, req) {
 				console.log('Something went wrong!', err);
 			});
 		} else if (uri[0] == "play") {
-			console.log(uri[1]['is_random'])
 			if (uri[1]['is_random'] == "true") {
 				spotify.spotifyApi.setShuffle(true)
 				.then(function() {}, function (err) {
@@ -151,3 +152,5 @@ app.ws('/playback', function(ws, req) {
 app.listen(port, () => {
 	console.log(`Client listening at http://localhost:${port}`)
 })
+
+process.on('unhandledRejection', up => { throw up });
