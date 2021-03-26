@@ -27,8 +27,18 @@ function playUri(uri, isRandom=false) {
     playbackws.send('play?uri=' + uri + '&is_random=' + isRandom);
 }
 
+function followPlaylist(id, dom_id) {
+    playbackws.send('followPlaylist?id=' + id + '&dom_id=' + dom_id);
+}
+
+function unfollowPlaylist(id, dom_id) {
+    playbackws.send('unfollowPlaylist?id=' + id + '&dom_id=' + dom_id);
+}
+
 playbackws.onmessage = function(msg) {
     data = JSON.parse(msg.data);
+
+    console.log(data.type)
     
     if (data.type == "playingState") {
         if (Object.keys(data.player).length === 0) {
@@ -63,6 +73,14 @@ playbackws.onmessage = function(msg) {
         var navHeight = window.getComputedStyle(document.getElementsByTagName('nav')[0]).height
         var playingHeight = window.getComputedStyle(document.getElementById('playing')).height
         app.style.height = "calc(100% - " + navHeight + " - " + playingHeight + " - 1.5rem)"
+    } else if (data.type == "followedPlaylist") {
+        document.querySelector(data.dom_id).classList.add('playlist-followed-btn');
+        document.querySelector(data.dom_id).innerHTML = "Following";
+        document.querySelector(data.dom_id).setAttribute('onclick', "unfollowPlaylist('" + data.id + "', '" + data.dom_id + "')")
+    } else if (data.type == "unfollowedPlaylist") {
+        document.querySelector(data.dom_id).classList.remove('playlist-followed-btn');
+        document.querySelector(data.dom_id).innerHTML = "Follow";
+        document.querySelector(data.dom_id).setAttribute('onclick', "followPlaylist('" + data.id + "', '" + data.dom_id + "')")
     }
 };
 

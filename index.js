@@ -112,7 +112,6 @@ app.ws('/playback', function(ws, req) {
 			.then(function() {
 				playingState()
 			}, function(err) {
-			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
 				console.log('Something went wrong!', err);
 			});
 		} else if (uri[0] == "play") {
@@ -127,7 +126,22 @@ app.ws('/playback', function(ws, req) {
 			.then(function() {
 				playingState()
 			}, function(err) {
-			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+				console.log('Something went wrong!', err);
+			});
+		} else if (uri[0] == "followPlaylist") {
+			spotify.spotifyApi.followPlaylist(uri[1]['id'],
+			{
+			  'public' : true
+			}).then(function(data) {
+				ws.send(JSON.stringify({type: 'followedPlaylist', id: uri[1]['id'], dom_id: uri[1]['dom_id']}))
+			}, function(err) {
+				console.log('Something went wrong!', err);
+			});
+		} else if (uri[0] == "unfollowPlaylist") {
+			spotify.spotifyApi.unfollowPlaylist(uri[1]['id'])
+			.then(function(data) {
+				ws.send(JSON.stringify({type: 'unfollowedPlaylist', id: uri[1]['id'], dom_id: uri[1]['dom_id']}))
+			}, function(err) {
 				console.log('Something went wrong!', err);
 			});
 		}

@@ -1,3 +1,4 @@
+require('dotenv').config()
 let { spotifyApi } = require('./spotify');
 let fs = require('fs');
 const querystring = require('querystring');
@@ -41,6 +42,7 @@ function render(msg) {
 		if (uri[0] == "playlist") {
 			spotifyApi.getPlaylist(uri[1]['uri'])
 			.then(function(data) {
+				console.log(data.body)
 				pageHtml = pageHtml.replace('{playlist_name}', data.body.name)
 								   .replace('{playlist_description}', data.body.description)
 								   .replace('{playlist_img}', data.body.images[0].url)
@@ -60,7 +62,21 @@ function render(msg) {
 
 				pageHtml = pageHtml.replace('{songs_list}', songsList)
 
-				return resolve(pageHtml);
+				spotifyApi.areFollowingPlaylist(process.env.SPOTIFY_USERNAME, uri[1]['uri'], [process.env.SPOTIFY_USERNAME])
+				.then(function(isFollowing) {
+					if (isFollowing.body[0]) {
+						pageHtml = pageHtml.replace('{playlist-follow-btn-class}', ' playlist-followed-btn')
+										   .replace('{playlist-follow-btn-function}', `onclick="unfollowPlaylist('${uri[1]['uri']}', '.playlist-follow-btn')"`)
+										   .replace('{playlist-follow-btn-text}', 'Following')
+					} else {
+						pageHtml = pageHtml.replace('{playlist-follow-btn-class}', '')
+										   .replace('{playlist-follow-btn-function}', `onclick="followPlaylist('${uri[1]['uri']}', '.playlist-follow-btn')"`)
+										   .replace('{playlist-follow-btn-text}', 'Follow')
+					}
+					return resolve(pageHtml);
+				}, function(err) {
+					return reject('Something went wrong!', err);
+				});
 			}, function(err) {
 				return reject('Something went wrong!', err);
 			});
