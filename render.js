@@ -104,7 +104,7 @@ function render(msg) {
 				.then(function(tracks) {
 					songsList = '';
 
-					for (i = 0; i < 5; i++) {
+					for (i = 0; i < 5; i++) { // TODO: Handle artists with less than n songs
 						track = tracks.body.tracks[i]
 						let tmp = artistSongItem.replace('{song_name}', track.name)
 												.replace('{song_album}', track.album.name)
