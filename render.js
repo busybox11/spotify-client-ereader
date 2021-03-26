@@ -27,6 +27,14 @@ const artistSongItem = `<div class="artist-song" onclick="playSong('{song_uri}')
 	</div>
 </div>`
 
+const libraryItem = `<div class="library-item" onclick="open{library-item-type-capitalized}('{library-item-id}')">
+	<img class="library-img {library-item-type}-img" src="{library-item-img}">
+	<div class="library-item-info">
+		<span class="library-item-name">{library-item-name}</span><br>
+		<span class="library-item-author">by {library-item-author}</span>
+	</div>
+</div>`
+
 function formatRenderUri(uri) {
 	if (uri.substr(0, uri.indexOf('?')) == "") {
 		return [uri];
@@ -159,6 +167,27 @@ function render(msg) {
 				pageHtml = pageHtml.replace('{recently_played_content}', data)
 				return resolve(pageHtml);
 			})
+		} else if (uri[0] == "library") {
+			spotifyApi.getUserPlaylists(process.env.SPOTIFY_USERNAME)
+			.then(function(data) {
+				items = ""
+				for (value of Object.entries(data.body.items)) {
+					item = value[1]
+					let tmp = libraryItem.replace('{library-item-type-capitalized}', item.type.charAt(0).toUpperCase() + item.type.slice(1))
+										 .replace('{library-item-id}', item.id)
+										 .replace('{library-item-type}', item.type)
+										 .replace('{library-item-img}', item.images[0].url)
+										 .replace('{library-item-name}', item.name)
+										 .replace('{library-item-author}', item.owner.display_name)
+					items += tmp;
+				}
+
+				pageHtml = pageHtml.replace('{library-items}', items)
+
+				return resolve(pageHtml);
+			},function(err) {
+				console.log('Something went wrong!', err);
+			});
 		} else {
 			return resolve(pageHtml);
 		}
