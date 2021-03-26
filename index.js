@@ -104,9 +104,9 @@ app.ws('/playback', function(ws, req) {
 		} else if (uri[0] == "playUriWithContext") {
 			spotify.spotifyApi.play(
 			{
-			  "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+			  "context_uri": uri[1]['context_uri'],
 			  "offset": {
-			    "position": 5
+			    "position": uri[1]['offset']
 			  },
 			  "position_ms": 0
 			})
