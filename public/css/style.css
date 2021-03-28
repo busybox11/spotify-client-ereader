@@ -264,13 +264,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .searchbox {
-	background: #EEEEEE;
+	background: #CCCCCC;
+	box-shadow: 0px 3px 4px #00000030;
 	padding: .5rem .75rem;
 	margin-bottom: .75rem;
 	border-radius: 9999px;
 	display: -webkit-inline-box;
-	width: 100%;
+	width: calc(100% - 1.5rem - 12px);
 	box-sizing: border-box;
+	position: fixed;
 }
 
 .searchbox-input {
@@ -282,6 +284,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #search-results {
 	overflow: auto;
+	padding-top: 3rem;
 }
 
 .error-refresh-div {
