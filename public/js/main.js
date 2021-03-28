@@ -52,7 +52,7 @@ renderws.onmessage = function(msg) {
 	appViewScript.id = getActivePage() + '-script'
 	app.appendChild(appViewScript);
 	app.scrollTop = 0;
-};
+}
 
 renderws.onopen = function() {
 	viewHome();

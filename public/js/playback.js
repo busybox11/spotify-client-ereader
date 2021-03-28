@@ -95,7 +95,12 @@ playbackws.onmessage = function(msg) {
 		document.querySelector(data.dom_id).classList.remove('artist-followed-btn');
 		document.querySelector(data.dom_id).innerHTML = "Follow";
 		document.querySelector(data.dom_id).setAttribute('onclick', "followArtist('" + data.id + "', '" + data.dom_id + "')")
-	}
+	} else if (data.type == "transferredPlayback") {
+        document.getElementById("playing-device-name").innerHTML = data.device.name
+        if (getActivePage() == "playback_speaker") {
+            renderws.send('player/devices');
+        }
+    }
 };
 
 playbackws.onopen = function() {

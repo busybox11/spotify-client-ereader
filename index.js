@@ -176,7 +176,11 @@ app.ws('/playback', function(ws, req) {
 			spotify.spotifyApi.transferMyPlayback([uri[1]['id']])
 			.then(function() {
 				console.log('Transfering playback to ' + [uri[1]['id']]);
-				ws.send(JSON.stringify({type: 'transferedPlayback', id: uri[1]['id']}))
+				spotify.getPlayingState().then(function(data) {
+					ws.send(JSON.stringify({type: 'transferredPlayback', device: {id: uri[1]['id'], name: data.device.name}}))
+				}, function(err) {
+					console.log('Something went wrong!', err);
+				});
 				playingState()
 			}, function(err) {
 				console.log('Something went wrong!', err);
