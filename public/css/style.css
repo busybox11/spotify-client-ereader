@@ -44,6 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 .search-res-global-row {
 	display: -webkit-inline-box;
 	margin-bottom: .75rem;
+	width: 100%;
 }
 
 .home-recent-item,
@@ -53,7 +54,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .recent-img {
-	width: inherit;
+	width: 3.5rem;
+	height: 3.5rem;
+	object-fit: cover;
 	margin-right: .5rem;
 	float: left;
 }
