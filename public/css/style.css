@@ -89,7 +89,10 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: normal;
 }
 
-.playlist-header-name,
+.playlist-header-name {
+	margin-bottom: 0;
+}
+
 .album-header-name,
 .artist-header-name {
 	margin-bottom: 0;
@@ -170,11 +173,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .playlist-song,
 .album-song,
-.artist-song {
+.artist-song,
+.spotify-connect-device {
 	display: -webkit-inline-box;
 	width: 100%;
 	margin-bottom: .75rem;
 	overflow: hidden;
+	-webkit-box-align: center;
 }
 
 .playlist-song-img,
@@ -278,4 +283,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .error-refresh-btn > i.mdi {
 	margin-right: .25rem;
+}
+
+.spotify-connect-header {
+	margin-bottom: 1.5rem;
+}
+
+.spotify-connect-device-icon {
+	font-size: 2rem;
+	margin-right: .75rem;
 }

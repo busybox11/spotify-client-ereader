@@ -35,6 +35,14 @@ const libraryItem = `<div class="library-item" onclick="open{library-item-type-c
 	</div>
 </div>`
 
+const spotifyConnectDevice = `<div class="spotify-connect-device" onclick="transferPlayback('{device-id}')">
+	<i class="mdi mdi-speaker{device-active} spotify-connect-device-icon"></i>
+	<div>
+		<span class="spotify-connect-device-name">{device-name}</span><br>
+		<small class="spotify-connect-device-type">{device-type}</small>
+	</div>
+</div>`
+
 function formatRenderUri(uri) {
 	if (uri.substr(0, uri.indexOf('?')) == "") {
 		return [uri];
@@ -186,6 +194,25 @@ function render(msg) {
 
 				return resolve(pageHtml);
 			},function(err) {
+				console.log('Something went wrong!', err);
+			});
+		} else if (uri[0] == "player/devices") {
+			spotifyApi.getMyDevices()
+			.then(function(data) {
+				items = ""
+				for (value of Object.entries(data.body.devices)) {
+					item = value[1]
+					let tmp = spotifyConnectDevice.replace('{device-id}', item.id)
+												  .replace('{device-active}', ((item.is_active) ? '-wireless' : ''))
+												  .replace('{device-name}', item.name)
+												  .replace('{device-type}', item.type)
+					items += tmp;
+				}
+
+				pageHtml = pageHtml.replace('{list-devices}', items)
+
+				return resolve(pageHtml);
+			}, function(err) {
 				console.log('Something went wrong!', err);
 			});
 		} else {

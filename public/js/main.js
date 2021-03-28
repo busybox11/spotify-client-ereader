@@ -34,6 +34,10 @@ function viewSearch() {
 	renderws.send('search');
 }
 
+function viewSpeakerMenu() {
+	renderws.send('player/devices');
+}
+
 renderws.onmessage = function(msg) {
 	try { app.getElementById(getActivePage() + '-script').remove() } catch(e) {}
 

@@ -161,6 +161,16 @@ app.ws('/playback', function(ws, req) {
 			}, function(err) {
 				console.log('Something went wrong!', err);
 			});
+		} else if (uri[0] == "transferPlayback") {
+			spotify.spotifyApi.transferMyPlayback([uri[1]['id']])
+			.then(function() {
+				console.log('Transfering playback to ' + [uri[1]['id']]);
+				ws.send(JSON.stringify({type: 'transferedPlayback', id: uri[1]['id']}))
+				playingState()
+			}, function(err) {
+			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+				console.log('Something went wrong!', err);
+			});
 		}
 	});
 });

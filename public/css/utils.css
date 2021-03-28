@@ -2,6 +2,10 @@
 	float: right;
 }
 
+.mb-0 {
+	margin-bottom: 0;
+}
+
 ::-webkit-scrollbar {
 	width: .75rem;
 }
