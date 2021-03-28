@@ -25,11 +25,13 @@ h1, h2, h3, h4, h5, h6 {
 	overflow: auto;
 }
 
-.home-section {
+.home-section,
+.search-section {
 	margin-bottom: 1.5rem;
 }
 
-.home-section-title {
+.home-section-title,
+.search-section-title {
 	margin-block-end: .5rem;
 	margin-bottom: .5rem;
 }
@@ -38,12 +40,14 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 0;
 }
 
-.home-recent-row {
+.home-recent-row,
+.search-res-global-row {
 	display: -webkit-inline-box;
 	margin-bottom: .75rem;
 }
 
-.home-recent-item {
+.home-recent-item,
+.search-res-global-item {
 	width: calc(100% / 3);
 	line-height: 1;
 }
@@ -58,7 +62,8 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 100%;
 }
 
-.recent-artist-name {
+.recent-artist-name,
+.search-res-item-artist {
 	color: #3A3A3A;
 	font-size: 1rem;
 }
@@ -257,6 +262,7 @@ h1, h2, h3, h4, h5, h6 {
 .searchbox {
 	background: #EEEEEE;
 	padding: .5rem .75rem;
+	margin-bottom: .75rem;
 	border-radius: 9999px;
 	display: -webkit-inline-box;
 	width: 100%;
@@ -268,6 +274,10 @@ h1, h2, h3, h4, h5, h6 {
 	border: none;
 	outline: none !important;
 	width: 100%;
+}
+
+#search-results {
+	overflow: auto;
 }
 
 .error-refresh-div {

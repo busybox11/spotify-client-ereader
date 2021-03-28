@@ -6,9 +6,18 @@ let expressWs = require('express-ws')(app);
 let spotify = require('./spotify');
 let loginScript = require('./login');
 let renderScript = require('./render');
+let renderSearch = require('./views/renderjs/search');
 const querystring = require('querystring');
 
 const port = 3000
+
+function formatUri(uri) {
+	if (uri.substr(0, uri.indexOf('?')) == "") {
+		return [uri];
+	} else {
+		return [uri.substr(0, uri.indexOf('?')), querystring.parse(uri.substr(uri.indexOf('?') + 1))]
+	}
+}
 
 app.use('/', express.static(__dirname + '/public'));
 
@@ -50,14 +59,6 @@ app.ws('/playback', function(ws, req) {
 				ws.send(JSON.stringify({type: 'playingState', player: data}))
 			}
 		})
-	}
-
-	function formatUri(uri) {
-		if (uri.substr(0, uri.indexOf('?')) == "") {
-			return [uri];
-		} else {
-			return [uri.substr(0, uri.indexOf('?')), querystring.parse(uri.substr(uri.indexOf('?') + 1))]
-		}
 	}
 
 	function getVolume() {
@@ -201,6 +202,17 @@ app.ws('/playback', function(ws, req) {
 		}
 	});
 });
+
+app.ws('/search', function(ws, req) {
+	ws.on('message', function(msg) {
+		uri = formatUri(msg);
+		if (uri[0] == "global") {
+			renderSearch.globalSearch(uri[1]['query']).then(function(result) {
+				ws.send(JSON.stringify({type: 'globalSearch', html: result}))
+			})
+		}
+	})
+})
 
 app.listen(port, () => {
 	console.log(`Client listening at http://localhost:${port}`)

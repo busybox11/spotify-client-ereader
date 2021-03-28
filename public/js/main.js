@@ -1,6 +1,11 @@
 var renderprotocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
 var renderaddress = renderprotocol + window.location.host + window.location.pathname + 'api/render';
 var renderws = new WebSocket(renderaddress);
+
+var searchprotocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+var searchaddr = searchprotocol + window.location.host + window.location.pathname + 'search';
+var searchws = new WebSocket(searchaddr);
+
 var app = document.getElementById("app");
 
 var refreshbtnhtml = "<div class='error-refresh-div'><span class='error-refresh-btn' onclick='document.location.reload()'><i class='mdi mdi-refresh'></i>Refresh</span></div>"
