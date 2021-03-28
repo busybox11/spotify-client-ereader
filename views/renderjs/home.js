@@ -47,7 +47,7 @@ function renderRecentlyPlayed() {
                                 `openAlbum('${album.body.id}')`,
                                 album.body.images[0].url,
                                 albumDesc.replace('{album-name}', album.body.name)
-                                         .replace('{artist-name}', album.body.label)
+                                         .replace('{artist-name}', album.body.artists[0].name)
                             )
                             break;
                     }
