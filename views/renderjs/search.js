@@ -25,7 +25,7 @@ const globalSearchHTML = `<div class="search-section">
 </div>`
 
 const globalSearchItemHTML = `<div class="search-res-global-item" onclick="{item-function}">
-    <img class="recent-img {item-type}-img" src="{item-img}">
+    <img class="search-img {item-type}-img" src="{item-img}">
     {item-desc}
 </div>`
 
