@@ -45,6 +45,10 @@ function globalSearch(query) {
 				try {
 					let result = playlistsRes.body.playlists.items[i]
 
+					if (i == 0 && result == undefined) {
+						playlistRow1 = "No results for this search category"
+					}
+
 					item = item.replace('{item-function}', `openPlaylist('${result.id}')`)
 							   .replace('{item-type}', 'playlist')
 							   .replace('{item-img}', result.images[0].url)
@@ -70,6 +74,10 @@ function globalSearch(query) {
 					try {
 						let result = artistsRes.body.artists.items[i]
 
+						if (i == 0 && result == undefined) {
+							artistRow1 = "No results for this search category"
+						}
+
 						item = item.replace('{item-function}', `openArtist('${result.id}')`)
 								   .replace('{item-type}', 'artist')
 								   .replace('{item-img}', result.images[0].url)
@@ -93,6 +101,10 @@ function globalSearch(query) {
 						let item = globalSearchItemHTML
 						try {
 							let result = tracksRes.body.tracks.items[i]
+
+							if (i == 0 && result == undefined) {
+								tracksRow1 = "No results for this search category"
+							}
 
 							let trackDesc = trackOrAlbumDescHTML.replace('{item-name}', result.name)
 																.replace('{item-artist}', result.artists[0].name)
