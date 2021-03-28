@@ -60,6 +60,16 @@ app.ws('/playback', function(ws, req) {
 		}
 	}
 
+	function getVolume() {
+		return new Promise((resolve, reject) => {
+			spotify.getPlayingState().then(function(data) {
+				return resolve(data.device.volume_percent)
+			}, function(err) {
+				return reject('Something went wrong!', err);
+			});
+		})
+	}
+
 	setInterval(function() {
 		spotify.getPlayingState().then(function(data) {
 			if (data.item !== null) {
@@ -168,9 +178,26 @@ app.ws('/playback', function(ws, req) {
 				ws.send(JSON.stringify({type: 'transferedPlayback', id: uri[1]['id']}))
 				playingState()
 			}, function(err) {
-			//if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
 				console.log('Something went wrong!', err);
 			});
+		} else if (uri[0] == "increaseVolume") {
+			getVolume().then(function(volume) {
+				spotify.spotifyApi.setVolume(volume + 5)
+				.then(function () {
+					console.log(`Setting volume to ${volume + 5}`);
+				}, function(err) {
+					console.log('Something went wrong!', err);
+				});
+			})
+		} else if (uri[0] == "decreaseVolume") {
+			getVolume().then(function(volume) {
+				spotify.spotifyApi.setVolume(volume - 5)
+				.then(function () {
+					console.log(`Setting volume to ${volume - 5}`);
+				}, function(err) {
+					console.log('Something went wrong!', err);
+				});
+			})
 		}
 	});
 });

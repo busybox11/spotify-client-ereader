@@ -1,7 +1,14 @@
 <div id="app-playback_speaker">
 	<div class="spotify-connect-header">
-		<h2 class="mb-0">Spotify Connect</h2>
-		<span>Available devices</span>
+		<div>
+			<h2 class="mb-0">Spotify Connect</h2>
+			<span>Available devices</span>
+		</div>
+
+		<div class="spotify-connect-device-volume-controls-div">
+			<i class="mdi mdi-volume-medium spotify-connect-volume-icon"onclick="decreaseVolume()"></i>
+			<i class="mdi mdi-volume-high spotify-connect-volume-icon"onclick="increaseVolume()"></i>
+		</div>
 	</div>
 
 	<div id="spotify-connect-devices-list">

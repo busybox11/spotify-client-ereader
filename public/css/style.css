@@ -287,9 +287,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .spotify-connect-header {
 	margin-bottom: 1.5rem;
+	display: -webkit-inline-box;
+    -webkit-box-align: center;
 }
 
 .spotify-connect-device-icon {
 	font-size: 2rem;
 	margin-right: .75rem;
+}
+
+.spotify-connect-volume-icon {
+	margin-left: .75rem;
+	font-size: 1.75rem;
+}
+
+.spotify-connect-device-volume-controls-div {
+	position: absolute;
+	right: 1rem;
+	z-index: 999;
 }
