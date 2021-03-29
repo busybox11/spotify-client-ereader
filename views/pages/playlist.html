@@ -1,22 +1,21 @@
 <div id="app-playlist">
 	<div class="playlist-header">
-		<img class="playlist-img playlist-img-header" src="{playlist_img}">
+		<img class="playlist-img playlist-img-header" src="{playlist-img}">
 		<div class="playlist-header-info">
-			<h3 class="playlist-header-name">{playlist_name}</h3>
-			<p class="playlist-header-desc">{playlist_description}</p>
+			<h3 class="playlist-header-name">{playlist-name}</h3>
+			<p class="playlist-header-desc">{playlist-description}</p>
 
 			<div class="view-header-actions">
 				<div class="playlist-follow-btn{playlist-follow-btn-class}" {playlist-follow-btn-function}>{playlist-follow-btn-text}</div>
-				<i class="mdi mdi-heart-outline"></i>
 
-				<i class="mdi mdi-dots-horizontal header-actions-more"></i>
+				<i class="mdi mdi-dots-horizontal header-actions-more" onclick="openContextMenu('{playlist-uri}')"></i>
 			</div>
 		</div>
 	</div>
 
 	<div class="playlist-content">
-		{songs_list}
+		{songs-list}
 	</div>
 
-	<span class="playlist-shuffle-btn" onclick="playUri('{playlist_uri}', true)"><i class="mdi mdi-shuffle"></i>Shuffle play</span>
+	<span class="playlist-shuffle-btn" onclick="playUri('{playlist-uri}', true)"><i class="mdi mdi-shuffle"></i>Shuffle play</span>
 </div>

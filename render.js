@@ -3,11 +3,11 @@ let { spotifyApi } = require('./spotify');
 let fs = require('fs');
 const querystring = require('querystring');
 
-const playlistSongItem = `<div class="playlist-song" onclick="playSongWithContext('{context_uri}', '{song_uri}')">
-	<img class="playlist-song-img" src="{song_img}">
+const playlistSongItem = `<div class="playlist-song" onclick="playSongWithContext('{context-uri}', '{song-uri}')">
+	<img class="playlist-song-img" src="{song-img}">
 	<div class="playlist-song-info">
-		<span class="playlist-song-name">{song_name}</span><br>
-		<span class="playlist-song-artist">{song_artist}</span>
+		<span class="playlist-song-name">{song-name}</span><br>
+		<span class="playlist-song-artist">{song-artist}</span>
 	</div>
 </div>`
 
@@ -58,24 +58,25 @@ function render(msg) {
 		if (uri[0] == "playlist") {
 			spotifyApi.getPlaylist(uri[1]['uri'])
 			.then(function(data) {
-				pageHtml = pageHtml.replace('{playlist_name}', data.body.name)
-								   .replace('{playlist_description}', data.body.description)
-								   .replace('{playlist_img}', data.body.images[0].url)
-								   .replace('{playlist_uri}', data.body.uri)
+				pageHtml = pageHtml.replace('{playlist-name}', data.body.name)
+								   .replace('{playlist-description}', data.body.description)
+								   .replace('{playlist-img}', data.body.images[0].url)
+								   .replace('{playlist-uri}', data.body.uri)
+								   .replace('{playlist-uri}', data.body.uri) // Need to do it rwice because present two times
 
 				songsList = '';
 
 				for (value of Object.entries(data.body.tracks.items)) {
-					let tmp = playlistSongItem.replace('{song_name}', value[1].track.name)
-											  .replace('{song_artist}', value[1].track.artists[0].name)
-											  .replace('{song_img}', value[1].track.album.images[2].url)
-											  .replace('{song_uri}', value[1].track.uri)
-											  .replace('{context_uri}', data.body.uri)
+					let tmp = playlistSongItem.replace('{song-name}', value[1].track.name)
+											  .replace('{song-artist}', value[1].track.artists[0].name)
+											  .replace('{song-img}', value[1].track.album.images[2].url)
+											  .replace('{song-uri}', value[1].track.uri)
+											  .replace('{context-uri}', data.body.uri)
 
 					songsList += tmp;
 				}
 
-				pageHtml = pageHtml.replace('{songs_list}', songsList)
+				pageHtml = pageHtml.replace('{songs-list}', songsList)
 
 				spotifyApi.areFollowingPlaylist(process.env.SPOTIFY_USERNAME, uri[1]['uri'], [process.env.SPOTIFY_USERNAME])
 				.then(function(isFollowing) {
