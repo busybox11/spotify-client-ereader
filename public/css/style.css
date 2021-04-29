@@ -1,10 +1,5 @@
 @import url("https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css");
 
-html, body {
-	height: 100%;
-	overflow: hidden;
-}
-
 body {
 	margin: 0;
 	font-size: 1.1rem;
@@ -21,8 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 	height: calc(100% - 147px - 1.5rem);
 	padding: .75rem;
 
-	margin-bottom: auto;
-	overflow: auto;
+	overflow-x: auto;
 }
 
 .home-section,
@@ -160,8 +154,8 @@ h1, h2, h3, h4, h5, h6 {
 	background: #1DB954;
 	color: white;
     border-radius: 9999px;
-    position: absolute;
-    right: 1.5rem;
+    position: fixed;
+    right: 1rem;
     bottom: calc(150px - 2rem);
 }
 
@@ -178,6 +172,10 @@ h1, h2, h3, h4, h5, h6 {
 .artist-header,
 .artist-content {
 	line-height: 0;
+}
+
+.playlist-content {
+	margin-bottom: 2rem;
 }
 
 .playlist-song,
@@ -203,6 +201,7 @@ h1, h2, h3, h4, h5, h6 {
 .album-song-info,
 .artist-song-info {
 	line-height: 1;
+	width: calc(100% - 5.75rem);
 }
 
 .playlist-song-name,
@@ -255,6 +254,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .library-item-info {
 	line-height: 1;
+	width: calc(100% - 5.75rem);
 }
 
 .library-item-name {
@@ -270,7 +270,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: .75rem;
 	border-radius: 9999px;
 	display: -webkit-inline-box;
-	width: calc(100% - 1.5rem - 12px);
+	width: calc(100% - 1.5rem);
 	box-sizing: border-box;
 	position: fixed;
 }
@@ -279,7 +279,7 @@ h1, h2, h3, h4, h5, h6 {
 	background: transparent;
 	border: none;
 	outline: none !important;
-	width: 100%;
+	width: -webkit-fill-available;
 }
 
 #search-results {
@@ -322,4 +322,17 @@ h1, h2, h3, h4, h5, h6 {
 	position: absolute;
 	right: 1rem;
 	z-index: 999;
+}
+
+.song-actions {
+	display: -webkit-inline-box;
+}
+
+.song-actions-icon,
+.header-actions-more {
+	height: 2rem;
+	width: 2rem;
+	display: -webkit-inline-box;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
 }

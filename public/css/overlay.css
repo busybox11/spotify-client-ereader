@@ -1,0 +1,52 @@
+#overlay {
+	visibility: hidden;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+
+	background-color: #1A1A1A;
+	color: white;
+
+	padding: .75rem;
+	box-sizing: border-box;
+}
+
+.overlay-close-fab {
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+
+	background: #3A3A3A;
+	height: 2.5rem;
+	width: 2.5rem;
+	font-size: 1.5rem;
+	border-radius: 100%;
+
+	display: -webkit-inline-box;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+}
+
+#overlay-track-info {
+	display: -webkit-inline-box;
+}
+
+#overlay-track-img {
+	height: 10rem;
+	width: 10rem;
+
+	margin-right: .75rem;
+}
+
+#overlay-track-info-content > * {
+	margin-block-end: 0;
+}
+
+#overlay-track-info-name {
+	font-size: 2.5rem;
+	font-weight: normal;
+}

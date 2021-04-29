@@ -7,6 +7,7 @@ var searchaddr = searchprotocol + window.location.host + window.location.pathnam
 var searchws = new WebSocket(searchaddr);
 
 var app = document.getElementById("app");
+var overlay = document.getElementById("overlay");
 
 var refreshbtnhtml = "<div class='error-refresh-div'><span class='error-refresh-btn' onclick='document.location.reload()'><i class='mdi mdi-refresh'></i>Refresh</span></div>"
 
@@ -41,6 +42,10 @@ function viewSearch() {
 
 function viewSpeakerMenu() {
 	renderws.send('player/devices');
+}
+
+function openContextMenuSong(uri) {
+	overlay.style.visibility = "visible";
 }
 
 renderws.onmessage = function(msg) {

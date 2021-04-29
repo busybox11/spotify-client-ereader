@@ -3,8 +3,17 @@ nav,
 	background: black;
 	color: white;
 
+	position: fixed;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+
 	padding: .75rem 1rem;
 	box-sizing: border-box;
+}
+
+nav {
+	top: 0;
 }
 
 #navbar-links {
@@ -13,12 +22,7 @@ nav,
 
 #playing {
 	display: block;
-	width: -webkit-fill-available;
-
-	/* position: absolute;
 	bottom: 0;
-	left: 0; */
-	width: 100%;
 }
 
 #playing-title,

@@ -3,11 +3,14 @@ let { spotifyApi } = require('./spotify');
 let fs = require('fs');
 const querystring = require('querystring');
 
-const playlistSongItem = `<div class="playlist-song" onclick="playSongWithContext('{context-uri}', '{song-uri}')">
+const playlistSongItem = `<div class="playlist-song" onclick="playSongWithContext('{context-uri}', '{song_uri}')">
 	<img class="playlist-song-img" src="{song-img}">
 	<div class="playlist-song-info">
 		<span class="playlist-song-name">{song-name}</span><br>
 		<span class="playlist-song-artist">{song-artist}</span>
+	</div>
+	<div class="song-actions">
+		<i class="song-actions-icon mdi mdi-dots-horizontal" onclick="openContextMenuSong('{song_uri}');event.stopPropagation();"></i>
 	</div>
 </div>`
 
@@ -17,6 +20,9 @@ const albumSongItem = `<div class="album-song" onclick="playSongWithContext('{co
 		<span class="album-song-name">{song_name}</span><br>
 		<span class="album-song-artist">{song_artist}</span>
 	</div>
+	<div class="song-actions">
+		<i class="song-actions-icon mdi mdi-dots-horizontal" onclick="openContextMenuSong('{song_uri}');event.stopPropagation();"></i>
+	</div>
 </div>`
 
 const artistSongItem = `<div class="artist-song" onclick="playSong('{song_uri}')">
@@ -24,6 +30,9 @@ const artistSongItem = `<div class="artist-song" onclick="playSong('{song_uri}')
 	<div class="artist-song-info">
 		<span class="artist-song-name">{song_name}</span><br>
 		<span class="artist-song-album">{song_album}</span>
+	</div>
+	<div class="song-actions">
+		<i class="song-actions-icon mdi mdi-dots-horizontal" onclick="openContextMenuSong('{song_uri}');event.stopPropagation();"></i>
 	</div>
 </div>`
 
@@ -70,7 +79,8 @@ function render(msg) {
 					let tmp = playlistSongItem.replace('{song-name}', value[1].track.name)
 											  .replace('{song-artist}', value[1].track.artists[0].name)
 											  .replace('{song-img}', value[1].track.album.images[2].url)
-											  .replace('{song-uri}', value[1].track.uri)
+											  .replace('{song_uri}', value[1].track.uri)
+											  .replace('{song_uri}', value[1].track.uri)
 											  .replace('{context-uri}', data.body.uri)
 
 					songsList += tmp;
@@ -112,6 +122,7 @@ function render(msg) {
 										   .replace('{song_artist}', value[1].artists[0].name)
 										   .replace('{song_img}', data.body.images[2].url)
 										   .replace('{song_uri}', value[1].uri)
+										   .replace('{song_uri}', value[1].uri)
 										   .replace('{context_uri}', data.body.uri)
 
 					songsList += tmp;
@@ -141,6 +152,7 @@ function render(msg) {
 						let tmp = artistSongItem.replace('{song_name}', track.name)
 												.replace('{song_album}', track.album.name)
 												.replace('{song_img}', track.album.images[2].url)
+												.replace('{song_uri}', track.uri)
 												.replace('{song_uri}', track.uri)
 
 						songsList += tmp

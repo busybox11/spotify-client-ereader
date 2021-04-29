@@ -76,9 +76,8 @@ playbackws.onmessage = function(msg) {
 			pp.remove('mdi-pause');
 		}
 
-		var navHeight = window.getComputedStyle(document.getElementsByTagName('nav')[0]).height
-		var playingHeight = window.getComputedStyle(document.getElementById('playing')).height
-		app.style.height = "calc(100% - " + navHeight + " - " + playingHeight + " - 1.5rem)"
+		app.style.marginTop = window.getComputedStyle(document.getElementsByTagName('nav')[0]).height
+		app.style.marginBottom = window.getComputedStyle(document.getElementById('playing')).height
 	} else if (data.type == "followedPlaylist") {
 		document.querySelector(data.dom_id).classList.add('playlist-followed-btn');
 		document.querySelector(data.dom_id).innerHTML = "Following";
